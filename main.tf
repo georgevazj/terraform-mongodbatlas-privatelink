@@ -37,7 +37,7 @@ data "azurerm_subnet" "subnet" {
 # MongoDB Atlas resources
 resource "mongodbatlas_privatelink_endpoint" "mongo_pve" {
   project_id = var.project_id
-  provider_name = var.provider_name
+  provider_name = var.cloud_name
   region = var.region
 }
 
@@ -60,5 +60,5 @@ resource "mongodbatlas_privatelink_endpoint_service" "mongo_pve_service" {
   private_link_id = mongodbatlas_privatelink_endpoint.mongo_pve.private_link_id
   endpoint_service_id = azurerm_private_endpoint.azure_pve.id
   private_endpoint_ip_address = azurerm_private_endpoint.azure_pve.private_service_connection.0.private_ip_address
-  provider = var.provider_name
+  provider = var.cloud_name
 }
