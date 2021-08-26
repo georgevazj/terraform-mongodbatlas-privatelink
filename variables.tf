@@ -34,5 +34,5 @@ variable "azure_pve_name" {
 variable "cloud_name" {
   type = string
   description = "(Required) Cloud Provider name"
-  default = "azure"
+  default = "AZURE"
 }
