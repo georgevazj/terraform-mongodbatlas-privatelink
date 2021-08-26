@@ -19,18 +19,14 @@ provider "mongodbatlas" {
 }
 
 # Query data from Azure
-data "azurerm_resource_group" "rsg" {
-  name = var.resource_group_name
-}
-
 data "azurerm_virtual_network" "vnet" {
   name = var.vnet_name
-  resource_group_name = data.azurerm_resource_group.rsg.name
+  resource_group_name = var.vnet_resource_group_name
 }
 
 data "azurerm_subnet" "subnet" {
   name = var.subnet_name
-  resource_group_name = data.azurerm_resource_group.rsg.name
+  resource_group_name = data.azurerm_virtual_network.vnet.resource_group_name
   virtual_network_name = data.azurerm_virtual_network.vnet.name
 }
 
@@ -42,7 +38,7 @@ resource "mongodbatlas_privatelink_endpoint" "mongo_pve" {
 }
 
 resource "azurerm_private_endpoint" "azure_pve" {
-  location = data.azurerm_resource_group.rsg.location
+  location = var.resource_group_name
   name = var.azure_pve_name
   resource_group_name = data.azurerm_resource_group.rsg.name
   subnet_id = data.azurerm_subnet.subnet.id

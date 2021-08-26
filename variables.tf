@@ -4,6 +4,11 @@ variable "resource_group_name" {
   description = "(Required) Target Azure resource group"
 }
 
+variable "vnet_resource_group_name" {
+  type = string
+  description = "(Required) Azure virtual network resource group"
+}
+
 variable "vnet_name" {
   type = string
   description = "(Required) Azure virtual network name"
