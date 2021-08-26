@@ -37,7 +37,7 @@ data "azurerm_subnet" "subnet" {
 # MongoDB Atlas resources
 resource "mongodbatlas_privatelink_endpoint" "mongo_pve" {
   project_id = var.project_id
-  provider_name = "AZURE"
+  provider_name = "azure"
   region = var.region
 }
 
