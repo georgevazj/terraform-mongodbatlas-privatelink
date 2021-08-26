@@ -38,9 +38,9 @@ resource "mongodbatlas_privatelink_endpoint" "mongo_pve" {
 }
 
 resource "azurerm_private_endpoint" "azure_pve" {
-  location = var.resource_group_name
+  location = "westeurope"
   name = var.azure_pve_name
-  resource_group_name = data.azurerm_resource_group.rsg.name
+  resource_group_name = var.resource_group_name
   subnet_id = data.azurerm_subnet.subnet.id
 
   private_service_connection {
