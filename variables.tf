@@ -30,3 +30,9 @@ variable "azure_pve_name" {
   type = string
   description = "(Required) Azure private endpoint name"
 }
+
+variable "provider_name" {
+  type = string
+  description = "(Required) Cloud Provider name"
+  default = "azure"
+}
